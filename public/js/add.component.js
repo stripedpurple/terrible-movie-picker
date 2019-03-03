@@ -41,6 +41,7 @@ var app = new Vue({
                 })
         },
         randomMovie: function () {
+            this.viewMovies = false;
             var random = randomNumber(0,this.movies.length - 1);
             this.selectedMovie = this.movies[random]
 
