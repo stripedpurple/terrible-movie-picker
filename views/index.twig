@@ -88,6 +88,9 @@
                             <p class="title is-4">{{ limit(movie.Title) }}</p>
                             <p class="subtitle is-6">{{ movie.Year }}</p>
                         </div>
+                        <footer>
+                            <a @click.prevent='watchedMovie(movie._id)' href="#" class="is-primary"></a>
+                        </footer>
                     </div>
                 </div>
             </div>
