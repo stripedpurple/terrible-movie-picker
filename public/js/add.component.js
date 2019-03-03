@@ -46,7 +46,11 @@ var app = new Vue({
 
         },
         searchOmdb: function () {
+            this.selectedMovie = null;
+            this.viewMovies = false;
+
             var self = this;
+
             axios.get('http://www.omdbapi.com/?s=' + this.searchStr + '&apikey=a82a91b7')
                 .then(function (response) {
                     self.searchResults = response;
