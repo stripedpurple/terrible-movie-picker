@@ -17,7 +17,7 @@ router.get('/api/v1/getmovies', (req, res, next) => {
         let db = client.db(dbName);
         let collection = db.collection('movies');
 
-        collection.find('{watched: false}').toArray((err, data) => {
+        collection.find({watched: false}).toArray((err, data) => {
             if (err || data.length < 1) {
                 res.status(404).send();
             }else{
