@@ -5,7 +5,7 @@
         <section class="container" id="app">
             <div class="columns">
                 <div class="column">
-                    <article v-if="success" class="message is-success">
+                    <article v-if="success" class="message is-success is-fixed">
                         <div class="message-header">
                             <p>Success</p>
                             <button class="delete" aria-label="delete" @click="success = null"></button>
@@ -59,7 +59,7 @@
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-3by4">
-                                <img :src="res.Poster" :alt="res.Title">
+                                <img :src="res.Poster || 'https://i.imgur.com/RhYlItD.jpg'" :alt="res.Title">
                             </figure>
                         </div>
                         <header class="card-header"></header>
@@ -101,7 +101,7 @@
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-3by4">
-                                <img :src="selectedMovie.Poster" :alt="selectedMovie.Title">
+                                <img :src="selectedMovie.Poster || 'https://i.imgur.com/RhYlItD.jpg'" :alt="selectedMovie.Title">
                             </figure>
                         </div>
                         <header class="card-header"></header>

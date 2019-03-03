@@ -11,7 +11,7 @@ var app = new Vue({
             message: ''
         }
     },
-    mounted: function() {
+    mounted: function () {
         var self = this;
         axios.get('/api/v1/getmovies')
             .then(function (response) {
@@ -30,23 +30,32 @@ var app = new Vue({
             })
                 .then(function (response) {
                     self.searchResults = null;
-                    self.success = true;
-                    self.alert.message = "Successfully removed movie from collection!"
+                    showMessage(self, true, "Successfully removed movie from collection!");
+                    for (let i = 0; i < self.movies.length; i++) {
+                        if (self.movies[i]._id == id) {
+                            self.movies.splice(i, 1);
+                        }
+                    }
+                    dismissMessage(self)
                 })
                 .catch(function (error) {
-                    self.success = false;
-                    self.alert.message = "An error occurred. Please try again later.";
-                    console.log("Add Error: ", error);
-                })
+                    showMessage(self, false, "An error occurred. Please try again later.", error);
+                    dismissMessage(self)
+                });
         },
         randomMovie: function () {
             this.viewMovies = false;
             this.searchResults = null;
-            var random = randomNumber(0,this.movies.length - 1);
+            var random = randomNumber(0, this.movies.length - 1);
             this.selectedMovie = this.movies[random]
 
         },
         searchOmdb: function () {
+            if (this.searchStr == '') {
+                this.searchResults = null;
+                return;
+            }
+
             this.selectedMovie = null;
             this.viewMovies = false;
 
@@ -67,17 +76,32 @@ var app = new Vue({
                 .then(function (response) {
                     self.searchResults = null;
                     self.success = true;
-                    self.alert.message = "Successfully add " + res.Title + " to movie list!"
+                    showMessage(self, true, "Successfully add " + res.Title + " to movie list!");
+                    self.movies.push(response);
+                    dismissMessage(self)
                 })
                 .catch(function (error) {
-                    self.success = false;
-                    self.alert.message = "An error occurred. Please try again later.";
-                    console.log("Add Error: ", error);
-                })
+                    showMessage(self, false, "An error occurred. Please try again later.", error);
+                    dismissMessage(self)
+                });
         }
     }
 });
 
-function randomNumber(min,max) {
-    return Math.floor(Math.random()*(max-min+1)+min);
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function dismissMessage(self) {
+    setTimeout(function () {
+        self.success = null;
+    }, 5000)
+}
+
+function showMessage(self, success, msg, err) {
+    self.success = success;
+    self.alert.message = msg;
+    if (err){
+        console.log("Error: ", err);
+    }
 }

@@ -43,7 +43,7 @@ router.post('/api/v1/addmovie', (req, res, next) => {
             if (err || results.insertedCount < 1) {
                 res.status(500).send();
             }else{
-                res.status(200).send();
+                res.status(200).send(results.ops[0]);
             }
             client.close();
         })
