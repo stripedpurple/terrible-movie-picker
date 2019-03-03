@@ -32,7 +32,7 @@
                 <div class="column is-full">
                     <div class="field">
                         <p class="control has-icons-left">
-                            <input class="input is-rounded" type="text" placeholder="Search for movie"
+                            <input class="input is-rounded" type="text" placeholder="Add movie to list"
                                    v-model="searchStr"
                                    @keyup.enter="searchOmdb">
                             <span class="icon is-small is-left"><i class="fas fa-search"></i></span>
@@ -48,9 +48,9 @@
             </div>
             <div class="columns">
                 <div class="column"><a @click.prevent='randomMovie' href="#" class="button is-primary is-fullwidth">Random
-                        Movie</a></div>
-                <div class="column"><a @click.prevent='viewMovies = !viewMovies' href="#" class="button is-primary is-fullwidth">View
-                        Movies</a></div>
+                        movie!</a></div>
+                <div class="column"><a @click.prevent='viewMovies = !viewMovies; selectedMovie = null' href="#" class="button is-primary is-fullwidth">View
+                        current movies list!</a></div>
             </div>
 
 
@@ -68,7 +68,7 @@
                             <p class="subtitle is-6">{{ res.Year }}</p>
                         </div>
                         <footer class="card-footer">
-                            <a href="#" @click="selectEntry(res)" class="card-footer-item">Add</a>
+                            <a href="#" @click="selectEntry(res)" class="card-footer-item has-background-info has-text-white">Add</a>
                         </footer>
                     </div>
                 </div>
@@ -80,16 +80,16 @@
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-3by4">
-                                <img :src="movie.Poster" :alt="movie.Title">
+                                <img :src="movie.Poster || 'https://i.imgur.com/RhYlItD.jpg'" :alt="movie.Title">
                             </figure>
                         </div>
                         <header class="card-header"></header>
                         <div class="card-content">
-                            <p class="title is-4">{{ limit(movie.Title) }}</p>
+                            <p class="title is-4">{{ movie.Title }}</p>
                             <p class="subtitle is-6">{{ movie.Year }}</p>
                         </div>
                         <footer class="card-footer">
-                            <a @click.prevent='watchedMovie(movie._id)' href="#" class="card-footer-item has-background-primary has-text-white">Mark as watched!</a>
+                            <a @click.prevent='watchedMovie(movie._id)' href="#" class="card-footer-item has-background-danger has-text-white">Mark as watched!</a>
                         </footer>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                             <p class="subtitle is-6">{{ selectedMovie.Year }}</p>
                         </div>
                         <footer class="card-footer">
-                            <a @click.prevent="watchedMovie(selectMovie._id)" href="#" class="card-footer-item">Mark as watched!</a>
+                            <a @click.prevent="watchedMovie(selectMovie._id)" href="#" class="card-footer-item has-background-danger has-text-white">Mark as watched!</a>
                         </footer>
                     </div>
                 </div>

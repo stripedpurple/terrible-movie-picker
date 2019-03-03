@@ -42,7 +42,6 @@ var app = new Vue({
         },
         randomMovie: function () {
             var random = randomNumber(0,this.movies.length - 1);
-            console.log(random);
             this.selectedMovie = this.movies[random]
 
         },
@@ -70,9 +69,6 @@ var app = new Vue({
                     self.alert.message = "An error occurred. Please try again later.";
                     console.log("Add Error: ", error);
                 })
-        },
-        limit: function (text) {
-            return text.length > 20 ? text.slice(0, 20).trim() + '...' : text
         }
     }
 });

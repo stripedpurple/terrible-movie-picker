@@ -34,6 +34,9 @@ router.post('/api/v1/addmovie', (req, res, next) => {
         let collection = db.collection('movies');
 
         let newRecord = req.body;
+        for (let key in newRecord) {
+            if (newRecord[key] == 'N/A') newRecord[key] = null;
+        }
         newRecord.watched = false;
 
         collection.insertOne(newRecord, (err, results) => {
