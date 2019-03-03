@@ -24,7 +24,6 @@ var app = new Vue({
     },
     methods: {
         watchedMovie: function (id) {
-            console.log(id);
             var self = this;
             axios.post('/api/v1/watched', {
                 _id: id
@@ -42,6 +41,7 @@ var app = new Vue({
         },
         randomMovie: function () {
             this.viewMovies = false;
+            this.searchResults = null;
             var random = randomNumber(0,this.movies.length - 1);
             this.selectedMovie = this.movies[random]
 
