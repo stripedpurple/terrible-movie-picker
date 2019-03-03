@@ -31,7 +31,7 @@ var app = new Vue({
                 .then(function (response) {
                     self.searchResults = null;
                     self.success = true;
-                    self.alert.message = "Successfully add " + res.Title + " to movie list!"
+                    self.alert.message = "Successfully removed movie from collection!"
                 })
                 .catch(function (error) {
                     self.success = false;
