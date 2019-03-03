@@ -24,6 +24,7 @@ var app = new Vue({
     },
     methods: {
         watchedMovie: function (id) {
+            console.log(id);
             var self = this;
             axios.post('/api/v1/watched', {
                 _id: id
