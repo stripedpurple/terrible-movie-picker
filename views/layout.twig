@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='/stylesheets/bulma.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  </head>
-  <body>
-    {% block body %}{% endblock %}
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
-  <script src="/js/add.component.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Austin Barrett">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon/favicon.png">
+
+
+    <link rel='stylesheet' href='/stylesheets/bulma.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
+<script src="/js/add.component.js"></script>
 </html>

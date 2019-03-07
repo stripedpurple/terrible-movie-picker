@@ -13,3 +13,27 @@ a
     left: 50%
     transform: translateX(-50%)
     box-shadow: 0 0px 3px rgba(0,0,0,0.5)
+
+.progress
+  background: #DBDBDB
+
+  &::-webkit-progress-bar
+    background: transparent !important
+
+  &:indeterminate
+    animation: progress-indeterminate 1.5s linear infinite
+    background: #DBDBDB linear-gradient(to right, #4a4a4a 30%, #DBDBDB 30%) top left/150% 150% no-repeat
+
+  &:indeterminate::-moz-progress-bar
+    background: transparent !important
+
+  &:indeterminate.is-danger
+    background: #DBDBDB linear-gradient(to right, #FF3860 30%, #DBDBDB 30%) top left/150% 150% no-repeat
+
+
+@keyframes progress-indeterminate
+  0%
+    background-position: 200% 0
+
+  100%
+    background-position: -200% 0

@@ -1,6 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
+        loading: false,
         movies: null,
         viewMovies: false,
         selectedMovie: null,
@@ -11,7 +12,7 @@ var app = new Vue({
             message: ''
         }
     },
-    mounted: function () {
+    mounted: function  () {
         var self = this;
         axios.get('/api/v1/getmovies')
             .then(function (response) {
@@ -25,10 +26,13 @@ var app = new Vue({
     methods: {
         watchedMovie: function (id) {
             var self = this;
+            self.loading = true;
+
             axios.post('/api/v1/watched', {
                 _id: id
             })
                 .then(function (response) {
+                    self.loading = false;
                     self.searchResults = null;
                     showMessage(self, true, "Successfully removed movie from collection!");
                     for (let i = 0; i < self.movies.length; i++) {
@@ -39,6 +43,7 @@ var app = new Vue({
                     dismissMessage(self)
                 })
                 .catch(function (error) {
+                    self.loading = false;
                     showMessage(self, false, "An error occurred. Please try again later.", error);
                     dismissMessage(self)
                 });
@@ -51,36 +56,48 @@ var app = new Vue({
 
         },
         searchOmdb: function () {
-            if (this.searchStr == '') {
-                this.searchResults = null;
+            var self = this;
+
+            self.loading = true;
+
+            if (self.searchStr == '') {
+                self.searchResults = null;
                 return;
             }
 
-            this.selectedMovie = null;
-            this.viewMovies = false;
+            self.selectedMovie = null;
+            self.viewMovies = false;
 
-            var self = this;
 
             axios.get('http://www.omdbapi.com/?s=' + this.searchStr + '&apikey=a82a91b7')
                 .then(function (response) {
                     self.searchResults = response;
+                    self.loading = false;
                 })
                 .catch(function (error) {
+                    self.loading = false;
                     console.log(error);
                 });
 
         },
-        selectEntry: function (res) {
+        addToDB: function (res) {
             var self = this;
+            self.loading = true;
             axios.post('/api/v1/addmovie', res)
                 .then(function (response) {
-                    self.searchResults = null;
+                    for (let i = 0; i < self.searchResults.Search.length; i++) {
+                        if (self.searchResults.Search[i].imdbID == res.imdbID) {
+                            self.searchResults.Search.splice(i, 1);
+                        }
+                    }
+                    self.loading = false;
                     self.success = true;
                     showMessage(self, true, "Successfully add " + res.Title + " to movie list!");
                     self.movies.push(response);
                     dismissMessage(self)
                 })
                 .catch(function (error) {
+                    self.loading = false;
                     showMessage(self, false, "An error occurred. Please try again later.", error);
                     dismissMessage(self)
                 });
