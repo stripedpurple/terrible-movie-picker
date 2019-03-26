@@ -38,6 +38,12 @@
                             <span class="icon is-small is-left"><i class="fas fa-search"></i></span>
                         </p>
                     </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <div :class="{'is-invisible': !searchStr.length}" class="is-size-7 has-text-grey has-text-right">Press enter to search.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="column is-full has-text-centered">
