@@ -69,7 +69,7 @@ var app = new Vue({
             self.viewMovies = false;
 
 
-            axios.get('http://www.omdbapi.com/?s=' + this.searchStr + '&apikey=a82a91b7')
+            axios.get('//www.omdbapi.com/?s=' + this.searchStr + '&apikey=a82a91b7')
                 .then(function (response) {
                     self.searchResults = response;
                     self.loading = false;

@@ -5,24 +5,6 @@ body {
 a {
   color: #00B7FF; }
 
-span.padded {
-  padding: 0.5rem 0; }
-
-.has-margin-left {
-  margin-left: 0.5rem; }
-
-.has-margin-left-2 {
-  margin-left: 1rem; }
-
-.has-margin-left-3 {
-  margin-left: 1.5rem; }
-
-.has-margin-left-4 {
-  margin-left: 2rem; }
-
-.has-margin-left-5 {
-  margin-left: 2.25rem; }
-
 .is-fixed {
   position: fixed; }
   .is-fixed.message {
