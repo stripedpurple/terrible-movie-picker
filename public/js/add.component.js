@@ -2,6 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
         loading: false,
+        curMovieQuery: '',
         movies: null,
         viewMovies: false,
         selectedMovie: null,
@@ -11,6 +12,13 @@ var app = new Vue({
         alert: {
             message: ''
         }
+    },
+    computed: {
+      currentMovies(){
+          return this.movies.filter(function (x){
+              return x.title.toLowerCase().includes(this.curMovieQuery)
+          })
+      }
     },
     mounted: function  () {
         var self = this;

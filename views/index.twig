@@ -85,7 +85,8 @@
 
 
             <div v-if="viewMovies" class="columns is-multiline">
-                <div v-for="movie in movies" class="column is-3">
+                <input class="input" type="text" v-model="curMovieQuery">
+                <div v-for="movie in currentMovies" class="column is-3">
                     <div class="card">
                         <div class="card-image">
                             <figure class="image is-3by4">
